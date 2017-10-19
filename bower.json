@@ -1,0 +1,15 @@
+{
+  "name": "ether",
+  "version": "0.0.0",
+  "authors": [
+    "Andrey Murashkin <andrey@phpteam.pro>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
