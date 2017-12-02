@@ -1,29 +1,18 @@
 var solc = require('solc');
 var fs = require('fs');
 var Pudding = require('ether-pudding');
+var SolidityFunction = require('web3/lib/web3/function');
+var _ = require('lodash');
+web3 = require('web3');
+var abi = require('ethereumjs-abi');
 
-//var contractName = 'Greeter';
-if(process.argv.length < 3) {
-    console.log('needs the contract Name as argument!');
-    process.exit(1);
-}
-var contractName = process.argv[2];
-var source = fs.readFileSync(__dirname+'/contracts/'+contractName+'.sol',{encoding: 'utf8'}).toString().replace(/\n/g,' ');
 
-var compiled = solc.compile(source, 1);
 
-if(!compiled.contracts[contractName]) {
-    console.log('Contract must have same name as file!');
-    process.exit(1);
-}
-var bytecode = compiled.contracts[contractName].bytecode;
-var interface = compiled.contracts[contractName].interface;
 
-var contract_data = {
-    abi: JSON.parse(interface),
-    binary: bytecode
-};
-//console.log(contract_data);
-Pudding.save(contract_data, './'+contractName+'.sol.js').then(function() {
-    console.log('File '+'./'+contractName+'.sol.js'+' was created with the JS contract!' );
-});
+// returns the encoded binary (as a Buffer) data to be sent
+var encodedBuffer = abi.rawEncode(['uint','uint','uint','uint','uint','uint'], [10000, 30, 20000, 40, 0, 0]);
+
+// returns the decoded array of arguments
+//var decoded = abi.rawDecode([ "address" ], data)
+
+console.log(encodedBuffer.toString('hex'));
